@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANKING WEBSITE</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: linear-gradient(rgba(182, 182, 182, 0.301), rgba(0, 0, 0, 0.39)), url('https://radiancegroup-bd.com/wp-content/uploads/2016/10/video-bg-1.jpg');
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .loginArea {
+            border: 2px solid #444;
+            background: rgba(0, 0, 0, 0.521);
+        }
+
+        input {
+            background: rgba(0, 0, 0, 0.808);
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- header section  -->
+    <header>
+        <h1 class="text-6xl text-center uppercase text-white mt-3 font-bold">WELCOME TO Rokibul's Bank</h1>
+    </header>
+    <main class="flex h-3/4 justify-center items-center text-center">
+        <div class="loginArea w-4/12 p-5">
+            <h2 id="subHeading" class="text-blue-500 uppercase text-black-400 text-4xl mb-4 text-left">Please Log in first</h2>
+            <p id="errorMsg" class="text-red-500 mb-2 hidden text-left">You've entered wrong info!'</p>
+            <div>
+                <input id="email" class="border-2 text-lg mb-2 w-full border-gray-500 p-2" placeholder="Email address [default = abc@abc.com ]"
+                    type="text">
+
+                <input id="password" class="border-2 text-lg w-full border-gray-500 p-2" placeholder="Password [default = Rokibul ]"
+                    type="password">
+
+                <button id="loginBtn"
+                    class="border-2 text-white block w-full mt-4 p-2 border-gray-500 font-bold bg-blue-500">LOGIN</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        const emailInputFiled = document.getElementById('email');
+        const passwordInputField = document.getElementById('password')
+        const logInBtn = document.getElementById('loginBtn')
+
+        const dataBaseUserName = 'abc@abc.com'
+        const dataBasePassword = 'Rokibul'
+
+        logInBtn.addEventListener('click', () => {
+            const userEmail = emailInputFiled.value;
+            const userPassword = passwordInputField.value;
+            if (userEmail == dataBaseUserName && userPassword == dataBasePassword) {
+                window.location.href = 'banking.html'
+            } else {
+               document.getElementById('subHeading').classList.replace('mb-4', 'mb-1')
+               document.getElementById('errorMsg').classList.remove('hidden')
+            }
+        })
+
+    </script>
+</body>
+
+</html>

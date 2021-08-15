@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.644);
+            overflow: hidden;
+        }
+
+        .footerText {
+            left: 50% !important;
+            transform: translateX(-50%);
+            color: white !important;
+            bottom: 10px
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="mt-5 uppercase text-white text-5xl font-bold text-center">Welcome to rokibul's  Banking website</h1>
+    </header>
+    <main class="w-3/4 mx-auto  mt-16">
+        <div class="gap-5 grid grid-cols-3">
+            <div class="p-5 rounded bg-indigo-400 text-center">
+                <h3 class="text-white uppercase mb-2 text-4xl">Deposite</h3>
+                <h4 class="text-white  text-lg  text-1xl">Total $<span id="total-deposite">000</span></h4>
+            </div>
+            <div class="p-5 rounded bg-yellow-600 text-center">
+                <h3 class="text-white uppercase mb-2 text-4xl">Withdraw</h3>
+                <h4 class="text-white  text-lg  text-1xl">Total $<span id="total-withdraw">000</span></h4>
+            </div>
+
+            <div class="p-5 rounded bg-green-700 text-center">
+                <h3 class="text-white uppercase mb-2 text-4xl">Balance</h3>
+                <h4 class="text-white text-lg text-1xl">Total $<span id="total-balance">1200</span></h4>
+            </div>
+        </div>
+        <div class="gap-5 grid grid-cols-2 mt-8">
+            <div class="p-5 rounded bg-purple-400">
+                <h3 class="text-white uppercase text-2xl mb-4">Please deposite</h3>
+
+                <input id="deposite" class="w-full p-2 text-lg" placeholder="$ You want to withdraw" type="number">
+
+                <button id="depositeBtn"
+                    class="text-white bg-indigo-400 text-lg py-2 px-4 rounded mt-5 mb-2 border">DEPOSITE</button>
+            </div>
+            <div class="p-5 rounded bg-gray-700">
+                <h3 class="text-white uppercase text-2xl mb-4">Please withdraw</h3>
+
+                <input id="withdraw" class="w-full p-2 text-lg" placeholder="$ You want to withdraw" type="number">
+
+                <button id="withdrawBtn"
+                    class="text-white bg-yellow-600 text-lg py-2 px-4 rounded mt-5 mb-2 border">WITHDRAW</button>
+            </div>
+        </div>
+    </main>
+    <footer class="">
+        <p class="text-center block footerText absolute bottom-0">Copyright &copy; All Reserved | <a class="text-yellow-600" href="https://www.facebook.com/md.rokibul.hasan.bd/">Md.Rokibul Hasan</a></p>
+    </footer>
+    <script>
+        let deposite = document.getElementById("total-deposite")
+        let withdraw = document.getElementById("total-withdraw")
+        let balance = document.getElementById("total-balance")
+
+        const depositeAmount = document.getElementById("deposite");
+        const withdrawAmount = document.getElementById("withdraw");
+
+        const depositeBtn = document.getElementById("depositeBtn");
+        const withdrawBtn = document.getElementById("withdrawBtn");
+
+        depositeBtn.addEventListener('click', () => {
+            const totalDeposite = Number(deposite.innerText) + Number(depositeAmount.value);
+            deposite.innerText = totalDeposite;
+
+            const totalBalance = Number(balance.innerText) + Number(depositeAmount.value);
+            balance.innerText = totalBalance;
+            depositeAmount.value = '';
+        })
+
+        withdrawBtn.addEventListener('click', () => {
+           if (Number(balance.innerText) >=   Number(withdrawAmount.value)){
+            const totalWithdraw = Number(withdraw.innerText) + Number(withdrawAmount.value);
+            withdraw.innerText = totalWithdraw;
+
+            totalBalance = Number(balance.innerText) - Number(withdrawAmount.value);
+            balance.innerText = totalBalance;
+            withdrawAmount.value = '';
+           }else{
+               alert("You don't have sufficient balance'")
+           }
+        })
+
+    </script>
+</body>
+
+</html>
