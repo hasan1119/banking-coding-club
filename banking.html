@@ -27,7 +27,7 @@
 
 <body>
     <header>
-        <h1 class="mt-5 uppercase text-white text-5xl font-bold text-center">Welcome to rokibul's  Banking website</h1>
+        <h1 class="mt-5 uppercase text-white text-5xl font-bold text-center">Welcome to rokibul's Banking website</h1>
     </header>
     <main class="w-3/4 mx-auto  mt-16">
         <div class="gap-5 grid grid-cols-3">
@@ -65,7 +65,8 @@
         </div>
     </main>
     <footer class="">
-        <p class="text-center block footerText absolute bottom-0">Copyright &copy; All Reserved | <a class="text-yellow-600" href="https://www.facebook.com/md.rokibul.hasan.bd/">Md.Rokibul Hasan</a></p>
+        <p class="text-center block footerText absolute bottom-0">Copyright &copy; All Reserved | <a
+                class="text-yellow-600" href="https://www.facebook.com/md.rokibul.hasan.bd/">Md.Rokibul Hasan</a></p>
     </footer>
     <script>
         let deposite = document.getElementById("total-deposite")
@@ -80,24 +81,34 @@
 
         depositeBtn.addEventListener('click', () => {
             const totalDeposite = Number(deposite.innerText) + Number(depositeAmount.value);
-            deposite.innerText = totalDeposite;
 
-            const totalBalance = Number(balance.innerText) + Number(depositeAmount.value);
-            balance.innerText = totalBalance;
-            depositeAmount.value = '';
+            var currentBalance = Number(balance.innerText)
+            var currentDeposite = Number(depositeAmount.value);
+            if (currentDeposite > 0) {
+                deposite.innerText = totalDeposite;
+                const totalBalance = currentBalance + currentDeposite;
+                balance.innerText = totalBalance;
+                depositeAmount.value = '';
+            } else {
+                alert("Invalid deposit amount!!")
+            }
         })
 
         withdrawBtn.addEventListener('click', () => {
-           if (Number(balance.innerText) >=   Number(withdrawAmount.value)){
-            const totalWithdraw = Number(withdraw.innerText) + Number(withdrawAmount.value);
-            withdraw.innerText = totalWithdraw;
 
-            totalBalance = Number(balance.innerText) - Number(withdrawAmount.value);
-            balance.innerText = totalBalance;
-            withdrawAmount.value = '';
-           }else{
-               alert("You don't have sufficient balance'")
-           }
+
+            if (Number(balance.innerText) >= Number(withdrawAmount.value) && Number(withdrawAmount.value) > 0) {
+                const totalWithdraw = Number(withdraw.innerText) + Number(withdrawAmount.value);
+                withdraw.innerText = totalWithdraw;
+
+                totalBalance = Number(balance.innerText) - Number(withdrawAmount.value);
+                balance.innerText = totalBalance;
+                withdrawAmount.value = '';
+            } else if (Number(withdrawAmount.value) < 0) {
+                alert("Invalid withdraw amount!!")
+            } else {
+                alert("You don't have sufficient balance'")
+            }
         })
 
     </script>
